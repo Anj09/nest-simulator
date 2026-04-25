@@ -1,5 +1,5 @@
 /*
- *  iaf_psc_exp.h
+ *  eprop_iaf_psc_exp.h
  *
  *  This file is part of NEST.
  *
@@ -20,8 +20,8 @@
  *
  */
 
-#ifndef IAF_PSC_EXP_H
-#define IAF_PSC_EXP_H
+#ifndef eprop_iaf_psc_exp_H
+#define eprop_iaf_psc_exp_H
 
 // Includes from nestkernel:
 #include "archiving_node.h"
@@ -46,7 +46,7 @@ Leaky integrate-and-fire neuron model with exponential-shaped input currents
 Description
 +++++++++++
 
-``iaf_psc_exp``  a leaky integrate-and-fire model with
+``eprop_iaf_psc_exp``  a leaky integrate-and-fire model with
 
 * a hard threshold (if :math:`\delta=0`, see below)
 * a fixed refractory period,
@@ -141,7 +141,7 @@ on the synaptic time constant according to
   For implementation details see the
   `IAF Integration Singularity notebook <../model_details/IAF_Integration_Singularity.ipynb>`_.
 
-``iaf_psc_exp`` can handle current input in two ways:
+``eprop_iaf_psc_exp`` can handle current input in two ways:
 
 1. Current input through ``receptor_type`` 0 is handled as a stepwise constant
    current input as in other iaf models, that is, this current directly enters the
@@ -226,12 +226,12 @@ SpikeEvent, CurrentEvent, DataLoggingRequest
 See also
 ++++++++
 
-iaf_cond_exp, iaf_psc_exp_ps
+iaf_cond_exp, eprop_iaf_psc_exp_ps
 
 Examples using this model
 +++++++++++++++++++++++++
 
-.. listexamples:: iaf_psc_exp
+.. listexamples:: eprop_iaf_psc_exp
 
 EndUserDocs */
 
@@ -245,19 +245,19 @@ EndUserDocs */
  *
  * The template support of recent C++ compilers enables a more succinct
  * formulation without loss of runtime performance already at minimal
- * optimization levels. A future version of iaf_psc_exp will probably
+ * optimization levels. A future version of eprop_iaf_psc_exp will probably
  * address the problem of efficient usage of appropriate vector and
  * matrix objects.
  */
 
-void register_iaf_psc_exp( const std::string& name );
+void register_eprop_iaf_psc_exp( const std::string& name );
 
-class iaf_psc_exp : public ArchivingNode
+class eprop_iaf_psc_exp : public ArchivingNode
 {
 
 public:
-  iaf_psc_exp();
-  iaf_psc_exp( const iaf_psc_exp& );
+  eprop_iaf_psc_exp();
+  eprop_iaf_psc_exp( const eprop_iaf_psc_exp& );
 
   /**
    * Import sets of overloaded virtual functions.
@@ -290,8 +290,8 @@ private:
   double phi_() const;
 
   // The next two classes need to be friends to access the State_ class/member
-  friend class RecordablesMap< iaf_psc_exp >;
-  friend class UniversalDataLogger< iaf_psc_exp >;
+  friend class RecordablesMap< eprop_iaf_psc_exp >;
+  friend class UniversalDataLogger< eprop_iaf_psc_exp >;
 
   // ----------------------------------------------------------------
 
@@ -379,8 +379,8 @@ private:
    */
   struct Buffers_
   {
-    Buffers_( iaf_psc_exp& );
-    Buffers_( const Buffers_&, iaf_psc_exp& );
+    Buffers_( eprop_iaf_psc_exp& );
+    Buffers_( const Buffers_&, eprop_iaf_psc_exp& );
 
     //! Indices for access to different channels of input_buffer_
     enum
@@ -396,7 +396,7 @@ private:
     MultiChannelInputBuffer< NUM_INPUT_CHANNELS > input_buffer_;
 
     //! Logger for all analog data
-    UniversalDataLogger< iaf_psc_exp > logger_;
+    UniversalDataLogger< eprop_iaf_psc_exp > logger_;
   };
 
   // ----------------------------------------------------------------
@@ -465,12 +465,12 @@ private:
   /** @} */
 
   //! Mapping of recordables names to access functions
-  static RecordablesMap< iaf_psc_exp > recordablesMap_;
+  static RecordablesMap< eprop_iaf_psc_exp > recordablesMap_;
 };
 
 
 inline size_t
-nest::iaf_psc_exp::send_test_event( Node& target, size_t receptor_type, synindex, bool )
+nest::eprop_iaf_psc_exp::send_test_event( Node& target, size_t receptor_type, synindex, bool )
 {
   SpikeEvent e;
   e.set_sender( *this );
@@ -478,7 +478,7 @@ nest::iaf_psc_exp::send_test_event( Node& target, size_t receptor_type, synindex
 }
 
 inline size_t
-iaf_psc_exp::handles_test_event( SpikeEvent&, size_t receptor_type )
+eprop_iaf_psc_exp::handles_test_event( SpikeEvent&, size_t receptor_type )
 {
   if ( receptor_type != 0 )
   {
@@ -488,7 +488,7 @@ iaf_psc_exp::handles_test_event( SpikeEvent&, size_t receptor_type )
 }
 
 inline size_t
-iaf_psc_exp::handles_test_event( CurrentEvent&, size_t receptor_type )
+eprop_iaf_psc_exp::handles_test_event( CurrentEvent&, size_t receptor_type )
 {
   if ( receptor_type == 0 )
   {
@@ -505,7 +505,7 @@ iaf_psc_exp::handles_test_event( CurrentEvent&, size_t receptor_type )
 }
 
 inline size_t
-iaf_psc_exp::handles_test_event( DataLoggingRequest& dlr, size_t receptor_type )
+eprop_iaf_psc_exp::handles_test_event( DataLoggingRequest& dlr, size_t receptor_type )
 {
   if ( receptor_type != 0 )
   {
@@ -515,7 +515,7 @@ iaf_psc_exp::handles_test_event( DataLoggingRequest& dlr, size_t receptor_type )
 }
 
 inline void
-iaf_psc_exp::get_status( Dictionary& d ) const
+eprop_iaf_psc_exp::get_status( Dictionary& d ) const
 {
   P_.get( d );
   S_.get( d, P_ );
@@ -525,7 +525,7 @@ iaf_psc_exp::get_status( Dictionary& d ) const
 }
 
 inline void
-iaf_psc_exp::set_status( const Dictionary& d )
+eprop_iaf_psc_exp::set_status( const Dictionary& d )
 {
   Parameters_ ptmp = P_;                       // temporary copy in case of errors
   const double delta_EL = ptmp.set( d, this ); // throws if BadProperty
@@ -544,7 +544,7 @@ iaf_psc_exp::set_status( const Dictionary& d )
 }
 
 inline double
-iaf_psc_exp::phi_() const
+eprop_iaf_psc_exp::phi_() const
 {
   assert( P_.delta_ > 0. );
   return P_.rho_ * std::exp( 1. / P_.delta_ * ( S_.V_m_ - P_.Theta_ ) );
@@ -552,4 +552,4 @@ iaf_psc_exp::phi_() const
 
 } // namespace
 
-#endif // IAF_PSC_EXP_H
+#endif // eprop_iaf_psc_exp_H
