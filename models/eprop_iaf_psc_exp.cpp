@@ -611,8 +611,8 @@ nest::eprop_iaf_psc_exp::Parameters_::Parameters_()
   , V_reset_( -70.0 - E_L_ )  // in mV
   , tau_ex_( 2.0 )            // in ms
   , tau_in_( 2.0 )            // in ms
-  , rho_( 0.01 )              // in 1/s
-  , delta_( 0.0 )             // in mV
+  , rho_( 0.2 )              // in 1/s
+  , delta_( 0.1 )             // in mV
 {
 }
 
