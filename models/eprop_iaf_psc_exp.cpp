@@ -561,7 +561,7 @@
 #include "numerics.h"
 
 // Includes from nestkernel:
-#include "eprop_archiving_node_recurrent_impl.h"
+// #include "eprop_archiving_node_recurrent_impl.h"
 #include "exceptions.h"
 #include "iaf_propagator.h"
 #include "kernel_manager.h"
