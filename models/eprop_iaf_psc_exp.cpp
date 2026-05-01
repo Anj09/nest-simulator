@@ -269,7 +269,7 @@ eprop_iaf_psc_exp::State_::set( const Dictionary& d, const Parameters_& p, doubl
  * ---------------------------------------------------------------- */
 
 eprop_iaf_psc_exp::eprop_iaf_psc_exp()
-  : EpropArchivingNodeRecurrent()
+  : EpropArchivingNodeRecurrent< false >()
   , P_()
   , S_()
   , B_( *this )
@@ -278,7 +278,7 @@ eprop_iaf_psc_exp::eprop_iaf_psc_exp()
 }
 
 eprop_iaf_psc_exp::eprop_iaf_psc_exp( const eprop_iaf_psc_exp& n )
-  : EpropArchivingNodeRecurrent( n )
+  : EpropArchivingNodeRecurrent< false >( n )
   , P_( n.P_ )
   , S_( n.S_ )
   , B_( n.B_, *this )
@@ -527,8 +527,6 @@ eprop_iaf_psc_exp::compute_gradient( const long t_spike,
 }
 
 }  // namespace nest
-
-
 
 
 
