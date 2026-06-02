@@ -457,6 +457,17 @@ eprop_iaf_psc_exp::handle( DataLoggingRequest& e )
 
  // Gradient computation (E-prop core algorithm)
 
+// void
+// eprop_iaf_psc_exp::compute_gradient( const long t_spike,
+//   const long t_spike_previous,
+//   double& z_previous_buffer,
+//   double& z_bar,
+//   double& e_bar,
+//   double& e_bar_reg,
+//   double& epsilon,        
+//   double& weight,
+//   const CommonSynapseProperties& cp,
+//   WeightOptimizer* optimizer )
 void
 eprop_iaf_psc_exp::compute_gradient( const long t_spike,
   const long t_spike_previous,
@@ -464,10 +475,15 @@ eprop_iaf_psc_exp::compute_gradient( const long t_spike,
   double& z_bar,
   double& e_bar,
   double& e_bar_reg,
-  double& epsilon,        
+  double& epsilon,
   double& weight,
   const CommonSynapseProperties& cp,
-  WeightOptimizer* optimizer )
+  WeightOptimizer* optimizer,
+  const bool is_flush_event,
+  const bool previous_was_flush_event,
+  double& sum_grad,
+  long& remaining_steps_until_cutoff,
+  long& decay_steps )
 {
   double e = 0.0;                 
   double z = 0.0;                 
