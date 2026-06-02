@@ -102,7 +102,22 @@ private:
     double&,
     double&,
     const CommonSynapseProperties&,
-    WeightOptimizer* ) override;
+    WeightOptimizer*,
+    const bool,
+    const bool,
+    double&,
+    long&,
+    long& ) override;
+  // void compute_gradient( const long,
+  //   const long,
+  //   double&,
+  //   double&,
+  //   double&,
+  //   double&,
+  //   double&,
+  //   double&,
+  //   const CommonSynapseProperties&,
+  //   WeightOptimizer* ) override;
 
   long get_shift() const override;
   bool is_eprop_recurrent_node() const override;
