@@ -249,6 +249,7 @@ const std::string g_ps( "g_ps" );
 const std::string g_rr( "g_rr" );
 const std::string g_sfa( "g_sfa" );
 const std::string g_sp( "g_sp" );
+const std::string gamma( "gamma" ); 
 const std::string gamma_shape( "gamma_shape" );
 const std::string gaussian( "gaussian" );
 const std::string global_id( "global_id" );
