@@ -121,7 +121,7 @@ private:
 
   long get_shift() const override;
   bool is_eprop_recurrent_node() const override;
-  long get_eprop_isi_trace_cutoff() const override;
+  // long get_eprop_isi_trace_cutoff() const override;
 
  
   friend class RecordablesMap< eprop_iaf_psc_exp >;
@@ -346,11 +346,11 @@ eprop_iaf_psc_exp::is_eprop_recurrent_node() const
   return true;
 }
 
-inline long
-eprop_iaf_psc_exp::get_eprop_isi_trace_cutoff() const
-{
-  return V_.eprop_isi_trace_cutoff_steps_;
-}
+// inline long
+// eprop_iaf_psc_exp::get_eprop_isi_trace_cutoff() const
+// {
+//   return V_.eprop_isi_trace_cutoff_steps_;
+// }
 
 inline size_t
 eprop_iaf_psc_exp::send_test_event( Node& target, size_t receptor_type, synindex, bool )
